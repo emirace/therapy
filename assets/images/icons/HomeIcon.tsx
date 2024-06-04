@@ -1,6 +1,6 @@
-import * as React from 'react';
-import Svg, { Path, G } from 'react-native-svg';
-import { PRIMARY_GREEN } from '../../constants/colors';
+import * as React from "react";
+import Svg, { Path, G } from "react-native-svg";
+import { PRIMARY_GREEN } from "../../../src/constant/colors";
 
 const HomeIcon: React.FC<{ color?: string }> = ({ color = PRIMARY_GREEN }) => (
   <Svg viewBox="0 0 200 200" preserveAspectRatio="xMidYMid slice">

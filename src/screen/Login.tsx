@@ -1,15 +1,18 @@
 import React, { useRef, useState } from "react";
 import { View, Text, StyleSheet, TextInput, ScrollView } from "react-native";
-import MainContainer from "../components/MainContainer";
+import MainContainer from "../components/containers/MainContainer";
 import TerappyLogo from "../../assets/images/TerappyLogo";
 import PersonIcon from "../../assets/images/icons/PersonIcon";
 import Input from "../components/Input";
 import { PRIMARY_GREEN } from "../constant/colors";
 import { BaseText, ErrorText } from "../components/Text";
 import Button, { ButtonText } from "../components/Button";
+import { useAuth } from "../context/Auth";
+import { LoginNavigationProp } from "../types/notification";
 
-const Login: React.FC = () => {
-  const [user, setUser] = useState<string>("");
+const Login: React.FC<LoginNavigationProp> = ({ navigation }) => {
+  const { loginUser } = useAuth();
+  const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [error, setError] = useState<string>("");
   const passwordInputRef = useRef<TextInput>(null);
@@ -25,19 +28,18 @@ const Login: React.FC = () => {
   };
 
   const login = async () => {
-    // try {
-    //   const res = await authAPI.login({ email: user, password });
-    //   storage.set('auth', JSON.stringify(res));
-    //   const previousUser = storage.getString('userIdentity');
-    //   if (previousUser !== res.identity && process.env.NODE_ENV !== 'development') {
-    //     // await unsubscribeNotifications();
-    //   }
-    //   storage.set('userIdentity', res.identity);
-    //   navigate('/');
-    // } catch (e) {
-    //   console.error(e);
-    //   setError('Error');
-    // }
+    try {
+      await loginUser({ email, password });
+      // const previousUser = storage.getString('userIdentity');
+      // if (previousUser !== res.identity && process.env.NODE_ENV !== 'development') {
+      //   // await unsubscribeNotifications();
+      // }
+      // storage.set('userIdentity', res.identity);
+      navigation.navigate("Home");
+    } catch (e) {
+      console.error(e);
+      setError("Error");
+    }
   };
 
   const isSmallScreen = () => {
@@ -74,8 +76,8 @@ const Login: React.FC = () => {
           <Input
             iconProps={{ icon: <PersonIcon /> }}
             inputProps={{
-              value: user,
-              onChangeText: (value) => setUser(value),
+              value: email,
+              onChangeText: (value) => setEmail(value),
               keyboardType: "email-address",
               autoCapitalize: "none",
               onSubmitEditing: handleEmailSubmit,
@@ -144,11 +146,11 @@ const styles = StyleSheet.create({
     flexGrow: 1,
   },
   logoContainer: {
-    width: "100%",
     display: "flex",
     justifyContent: "center",
     flexDirection: "row",
     paddingTop: 60,
+    paddingBottom: 20,
   },
   catchphrase: {
     textAlign: "center",

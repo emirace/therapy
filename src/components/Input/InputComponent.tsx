@@ -11,12 +11,12 @@ const InputComponent: React.ForwardRefRenderFunction<
 const styles = StyleSheet.create({
   input: {
     borderWidth: 0,
-    width: "100%",
+    // width: "100%",
     color: DARKER_TEXT,
     backgroundColor: "transparent",
     flexGrow: 1,
     padding: 0,
-    marginTop: 10,
+    marginTop: 5,
     fontSize: 16,
     fontFamily: "Open Sans",
   },

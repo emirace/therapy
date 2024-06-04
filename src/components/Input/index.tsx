@@ -70,13 +70,13 @@ const Input: React.FC<{
   };
 
   useEffect(() => {
-    if (inputRef.current) {
-      if (isEditing) {
-        inputRef.current.focus();
-      } else {
-        inputRef.current.blur();
-      }
-    }
+    // if (inputRef.current) {
+    //   if (isEditing) {
+    //     inputRef.current.focus();
+    //   } else {
+    //     inputRef.current.blur();
+    // }
+    // }
   }, [isEditing]);
 
   return (
@@ -135,8 +135,6 @@ const Input: React.FC<{
 
 const styles = StyleSheet.create({
   container: {
-    width: "100%",
-    display: "flex",
     flexDirection: "row",
     gap: 10,
     justifyContent: "center",
@@ -157,6 +155,7 @@ const styles = StyleSheet.create({
   inputContainer: {
     flex: 1,
     position: "relative",
+    zIndex: 20,
   },
   imageContainer: {
     width: 25,

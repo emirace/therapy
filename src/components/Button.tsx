@@ -32,7 +32,7 @@ const Button: React.FC<ButtonProps> = ({
   paddingRight = 10,
   paddingBottom = 10,
   paddingLeft = 10,
-  width = "100%",
+  // width = "100%",
   flexGrow,
   flexShrink,
   flex,
@@ -54,7 +54,7 @@ const Button: React.FC<ButtonProps> = ({
           paddingRight,
           paddingBottom,
           paddingLeft,
-          width,
+          // width,
           marginTop,
           marginRight,
           marginBottom,
@@ -78,6 +78,7 @@ export const ButtonText: React.FC<{
   disabled?: boolean;
   color?: string;
   style?: TextStyle;
+  children: string;
 }> = ({ children, disabled, color = "#fbfbfd", style }) => {
   return (
     <BaseText

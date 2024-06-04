@@ -1,13 +1,12 @@
 import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { StatusBar } from "expo-status-bar";
-import {
-  KeyboardAvoidingView,
-  Platform,
-  StyleSheet,
-  Text,
-  View,
-} from "react-native";
-import StackNav from "./src/navigation/Stack";
+import { KeyboardAvoidingView, Platform, StyleSheet } from "react-native";
+import Login from "./src/screen/Login";
+import { RootStackParamList } from "./src/types/notification";
+import Home from "./src/screen/Home";
+
+const Stack = createNativeStackNavigator<RootStackParamList>();
 
 export default function App() {
   return (
@@ -17,7 +16,14 @@ export default function App() {
     >
       <NavigationContainer>
         <StatusBar style="auto" />
-        <StackNav />
+
+        <Stack.Navigator
+          initialRouteName="Login"
+          screenOptions={{ headerShown: false }}
+        >
+          <Stack.Screen name="Login" component={Login} />
+          <Stack.Screen name="Home" component={Home} />
+        </Stack.Navigator>
       </NavigationContainer>
     </KeyboardAvoidingView>
   );

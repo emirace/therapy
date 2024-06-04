@@ -9,3 +9,4 @@ export const PLACEHOLDER_TEXT = "#A5A5A5";
 export const TEXT = "#1E2205";
 export const RED = "#cf142b";
 export const RED_LIGHT = "#cf142b55";
+export const WHITE = "#FFFFFF";
