@@ -1,7 +1,7 @@
 import React from "react";
 import { Text, StyleSheet, TouchableOpacity, TextStyle } from "react-native";
 import { PRIMARY_GREEN, TEXT } from "../constant/colors";
-import { useNavigation } from "@react-navigation/native";
+import { Link } from "react-router-native";
 
 export interface TextProps {
   color?: string;
@@ -65,27 +65,25 @@ export const BaseText: React.FC<TextProps> = ({
   );
 };
 
-export const Title: React.FC<{ children: string }> = ({ children }) => {
-  return <Text style={styles.title}>{children}</Text>;
+export const Title: React.FC<{ children: string; style: TextStyle }> = ({
+  children,
+  style,
+}) => {
+  return <Text style={[styles.title, style]}>{children}</Text>;
 };
 
 export const Body: React.FC<{ children: string }> = ({ children }) => {
   return <Text style={styles.body}>{children}</Text>;
 };
 
-export const CustomLink: React.FC<{ children: string; to: string }> = ({
+export const CustomLink: React.FC<{ children: any; to: string }> = ({
   children,
   to,
 }) => {
-  const navigation = useNavigation();
-
   return (
-    <TouchableOpacity
-      onPress={() => navigation.navigate(to)}
-      style={styles.customLink}
-    >
-      <Text style={styles.customLinkText}>{children}</Text>
-    </TouchableOpacity>
+    <Link to={to} style={styles.customLink}>
+      {children}
+    </Link>
   );
 };
 
@@ -124,9 +122,6 @@ const styles = StyleSheet.create({
   },
   customLink: {
     // textDecorationLine: "none",
-  },
-  customLinkText: {
-    color: "#1e2205",
   },
   sectionTitle: {
     color: "#1e2205",

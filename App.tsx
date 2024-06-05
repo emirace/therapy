@@ -5,6 +5,11 @@ import { KeyboardAvoidingView, Platform, StyleSheet } from "react-native";
 import Login from "./src/screen/Login";
 import { RootStackParamList } from "./src/types/notification";
 import Home from "./src/screen/Home";
+import Providers from "./Providers";
+import { Navigate, Route, Routes } from "react-router-native";
+import Register from "./src/screen/Register";
+import Profile from "./src/screen/Profile";
+import PrivateRoute from "./src/components/containers/PrivateRoute";
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -14,17 +19,18 @@ export default function App() {
       behavior={Platform.OS === "ios" ? "padding" : "height"}
       style={{ flex: 1 }}
     >
-      <NavigationContainer>
-        <StatusBar style="auto" />
-
-        <Stack.Navigator
-          initialRouteName="Login"
-          screenOptions={{ headerShown: false }}
-        >
-          <Stack.Screen name="Login" component={Login} />
-          <Stack.Screen name="Home" component={Home} />
-        </Stack.Navigator>
-      </NavigationContainer>
+      <Providers>
+        <Routes>
+          <Route path="/login" element={<Login />} />
+          <Route path="/registro" element={<Register />} />
+          <Route path="/" element={<Navigate to={"/home"} />} />
+          <Route path="/home/*" element={<PrivateRoute component={Home} />} />
+          <Route
+            path="/perfil/*"
+            element={<PrivateRoute component={Profile} />}
+          />
+        </Routes>
+      </Providers>
     </KeyboardAvoidingView>
   );
 }

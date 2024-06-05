@@ -12,8 +12,10 @@ import { useConversation } from "../../context/Conversations";
 import ALERT_TYPES from "../../alert/interfaces/AlertTypes";
 import { BaseText } from "../../components/Text";
 import Summary from "./Summary";
+import Messages from "./pages/Messages";
+import Calendar from "./pages/Calendar";
 
-const Home: React.FC<HomeNavigationProp> = () => {
+const Home: React.FC = () => {
   const { user, loading, requestEmailConfirmation } = useAuth();
   const [menuOpen, setMenuOpen] = useState(false);
   const socket = useSocket();
@@ -81,8 +83,8 @@ const Home: React.FC<HomeNavigationProp> = () => {
       <Routes>
         <Route path="/" element={<Navigate to={"resumen"} />} />
         <Route path="resumen" element={<Summary />} />
-        {/* <Route path="mensajes" element={<Messages />} />
-        <Route path="calendario" element={<Calendar />} /> */}
+        <Route path="mensajes" element={<Messages />} />
+        <Route path="calendario" element={<Calendar />} />
       </Routes>
       <BottomNavBar />
     </MainContainer>

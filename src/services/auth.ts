@@ -34,7 +34,8 @@ export const registerService = async (data: {
   countryOrigin: string;
 }): Promise<void> => {
   try {
-    await api.post(`/auth/register`, data);
+    const response = await api.post(`/auth/register`, data);
+    await SecureStore.setItemAsync("authToken", response.data.token);
   } catch (error) {
     console.error("Registration failed:", error);
     throw error;

@@ -9,7 +9,7 @@ import {
 import { GREEN } from "../../constant/colors";
 import TopWave from "../../../assets/images/shapes/TopWave";
 import BottomWave from "../../../assets/images/shapes/BottomWave";
-import SideMenu from "../layouts/SideMenu";
+import SideMenu from "../SideMenu";
 
 const MainContainer: React.FC<
   PropsWithChildren<{

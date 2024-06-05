@@ -2,7 +2,6 @@ import React, { useCallback, useMemo, useState } from "react";
 import { Linking, TouchableOpacity, View } from "react-native";
 import styles from "./styles";
 import { StatusBody, StatusIcon, StatusTitle } from "./contants";
-import useRequiredDocumentation from "../../../../../../../../../state/requiredDocumentation";
 import {
   FunctionModes,
   UpdateDocumentUploadProps,
@@ -15,6 +14,7 @@ import { DOCUMENTS_URL } from "../../../../../../../../constant/urls";
 import DotMenuIcon from "../../../../../../../../../assets/images/icons/DotMenuIcon";
 import FileIcon from "../../../../../../../../../assets/images/icons/FileIcon";
 import Documentation from "../../../../../../../../types/Documentation";
+import { useRequiredDocumentation } from "../../../../../../../../context/RequiredDocumentation";
 
 const openBrowserForDownload = (url: string) => {
   Linking.openURL(url).catch((err) => console.error("An error occurred", err));
@@ -24,8 +24,7 @@ const Document: React.FC<{ document: Documentation }> = ({ document }) => {
   const { status, comments, name, uuid } = document;
   const alert = useAlert();
   const [showOptions, setShowOptions] = useState(false);
-  const { dispatcher: requiredDocumentationDispatcher } =
-    useRequiredDocumentation();
+  const {} = useRequiredDocumentation();
 
   const onStatusPress = useCallback(() => {
     alert({
@@ -49,9 +48,7 @@ const Document: React.FC<{ document: Documentation }> = ({ document }) => {
 
   const docURL = useMemo(() => {
     // return `${DOCUMENTS_URL}/therapist-documentation/${storage.getString('userIdentity')}/${uuid}-${name}`;
-    return `${DOCUMENTS_URL}/therapist-documentation/${storage.getString(
-      "userIdentity"
-    )}/${uuid}-${name}`;
+    return `${DOCUMENTS_URL}/therapist-documentation/`;
   }, [uuid, name]);
 
   const documentUploadProps: UpdateDocumentUploadProps = {
@@ -71,7 +68,7 @@ const Document: React.FC<{ document: Documentation }> = ({ document }) => {
       },
     })
       .then(() => {
-        requiredDocumentationDispatcher.deleteStart(uuid);
+        // requiredDocumentationDispatcher.deleteStart(uuid);
       })
       .catch(() => {});
 

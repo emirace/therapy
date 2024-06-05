@@ -8,14 +8,15 @@ import { PRIMARY_GREEN } from "../constant/colors";
 import { BaseText, ErrorText } from "../components/Text";
 import Button, { ButtonText } from "../components/Button";
 import { useAuth } from "../context/Auth";
-import { LoginNavigationProp } from "../types/notification";
+import { Link, useNavigate } from "react-router-native";
 
-const Login: React.FC<LoginNavigationProp> = ({ navigation }) => {
+const Login: React.FC = () => {
   const { loginUser } = useAuth();
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [error, setError] = useState<string>("");
   const passwordInputRef = useRef<TextInput>(null);
+  const navigate = useNavigate();
 
   const handleEmailSubmit = () => {
     if (passwordInputRef.current) {
@@ -35,7 +36,7 @@ const Login: React.FC<LoginNavigationProp> = ({ navigation }) => {
       //   // await unsubscribeNotifications();
       // }
       // storage.set('userIdentity', res.identity);
-      navigation.navigate("Home");
+      navigate("/");
     } catch (e) {
       console.error(e);
       setError("Error");
@@ -117,20 +118,20 @@ const Login: React.FC<LoginNavigationProp> = ({ navigation }) => {
             style={[styles.forgotPasswordContainer, styles.registerContainer]}
           >
             <BaseText>¿Aún no tienes cuenta?</BaseText>
-            {/* <Link to="/registro"> */}
-            <BaseText color={PRIMARY_GREEN} weight={700}>
-              Regístrate
-            </BaseText>
-            {/* </Link> */}
+            <Link to="/registro">
+              <BaseText color={PRIMARY_GREEN} weight={700}>
+                Regístrate
+              </BaseText>
+            </Link>
           </View>
           <View
             style={[styles.forgotPasswordContainer, styles.registerContainer]}
           >
-            {/* <Link to="/registro-terapeutas"> */}
-            <BaseText color={PRIMARY_GREEN} weight={700} fontSize={20}>
-              Registro psicoterapeutas
-            </BaseText>
-            {/* </Link> */}
+            <Link to="/registro-terapeutas">
+              <BaseText color={PRIMARY_GREEN} weight={700} fontSize={20}>
+                Registro psicoterapeutas
+              </BaseText>
+            </Link>
           </View>
         </View>
       </ScrollView>
