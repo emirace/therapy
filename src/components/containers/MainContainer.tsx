@@ -90,7 +90,7 @@ const styles = StyleSheet.create({
     marginBottom: 0,
   },
   mainWithNavigation: {
-    marginBottom: 58,
+    // marginBottom: 58,
   },
   topDecoration: {
     height: 38,

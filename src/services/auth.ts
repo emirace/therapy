@@ -15,7 +15,7 @@ export const loginService = async (data: {
   password: string;
 }): Promise<LoginResponse> => {
   try {
-    const response = await api.post<LoginResponse>(`/auth/elogin`, data);
+    const response = await api.post<LoginResponse>(`/auth/login`, data);
     await SecureStore.setItemAsync("authToken", response.data.token);
     return response.data;
   } catch (error) {

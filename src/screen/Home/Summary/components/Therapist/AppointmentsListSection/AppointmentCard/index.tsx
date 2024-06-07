@@ -11,7 +11,7 @@ import { getDisplayDate } from "../../../../../../../utils/date";
 import Button, { ButtonText } from "../../../../../../../components/Button";
 
 const AppointmentCard: React.FC<{ app: BaseAppointment }> = ({ app }) => {
-  const { appointments, acceptAppointment, loadingStates } = useAppointment();
+  const { acceptAppointment, loadingStates } = useAppointment();
 
   const onAccept = async (id: number) => {
     await acceptAppointment({ appointmentId: id });

@@ -9,7 +9,7 @@ export const baseURL = "https://test.backend.terappy.mx";
 
 // Create an instance of Axios with custom configurations if needed
 const api = axios.create({
-  baseURL: baseURL + "/api",
+  baseURL: baseURL,
   headers: {
     "Content-Type": "application/json",
   },
@@ -21,7 +21,7 @@ api.interceptors.request.use(
     // You can modify the request config here (e.g., add authentication headers)
     const token = await SecureStore.getItemAsync("authToken");
     if (token) {
-      config.headers.Authorization = `Bearer ${token}`;
+      config.headers.Authorization = `${token}`;
     }
     return config;
   },

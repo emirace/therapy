@@ -3,8 +3,8 @@ import { Image, TouchableHighlight, View, StyleSheet } from "react-native";
 import { useAuth } from "../context/Auth";
 import MenuIcon from "../../assets/images/icons/MenuIcon";
 import ProfileIcon from "../../assets/images/icons/ProfileIcon";
-import { IMAGES_URL } from "../constant/urls";
 import { GREEN } from "../constant/colors";
+import { IMAGES_URL } from "../resources/constants/urls";
 
 const Menu: React.FC<{ toggleMenu: () => void }> = ({ toggleMenu }) => {
   const { user } = useAuth();

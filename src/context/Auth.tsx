@@ -49,6 +49,7 @@ interface AuthContextProps {
   ) => Promise<{ accepted: boolean }>;
   logout: () => void;
   loading: {
+    loadingUser: boolean;
     loginUser: boolean;
     registerUser: boolean;
     requestEmailConfirmation: boolean;
@@ -66,6 +67,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({
 }) => {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState({
+    loadingUser: true,
     loginUser: false,
     registerUser: false,
     requestEmailConfirmation: false,
@@ -160,15 +162,17 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({
   useEffect(() => {
     const loadUser = async () => {
       const token = await SecureStore.getItemAsync("authToken");
+      console.log("token", token);
       if (token) {
         try {
           const profile = await getProfileService();
           setUser(profile);
         } catch (error) {
-          console.error("Failed to load user profile:", error);
+          console.error("Failed to load user profile :", error);
           await SecureStore.deleteItemAsync("authToken");
         }
       }
+      setLoading((prev) => ({ ...prev, loadingUser: false }));
     };
 
     loadUser();

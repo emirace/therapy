@@ -28,7 +28,7 @@ interface AppointmentContextProps {
   reserveAppointment: (data: {
     therapistId: number;
     dateISO: string;
-  }) => Promise<void>;
+  }) => Promise<Appointment | null>;
   confirmAppointment: (data: {
     appointmentId: number;
     paymentMethodId?: string | null;
@@ -124,10 +124,12 @@ export const AppointmentProvider: React.FC<{ children: any }> = ({
   }) => {
     setLoadingStates((prev) => ({ ...prev, reserveAppointment: true }));
     try {
-      await reserveAppointment(data);
+      const res = await reserveAppointment(data);
       await handleGetAllAppointments();
+      return res;
     } catch (error) {
       console.error("Failed to reserve appointment:", error);
+      return null;
     } finally {
       setLoadingStates((prev) => ({ ...prev, reserveAppointment: false }));
     }

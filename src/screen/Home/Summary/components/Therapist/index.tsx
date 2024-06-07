@@ -8,6 +8,7 @@ import RequiredDocumentation from "./RequiredDocumentation";
 import TherapistStatus from "../../../../../types/User/TherapistStatus";
 
 const Therapist: React.FC<{ user: TherapistInterface }> = ({ user }) => {
+  console.log(user.extraData.status);
   return (
     <Container>
       {user.extraData?.status === TherapistStatus.ACTIVE && (

@@ -10,6 +10,11 @@ import { Navigate, Route, Routes } from "react-router-native";
 import Register from "./src/screen/Register";
 import Profile from "./src/screen/Profile";
 import PrivateRoute from "./src/components/containers/PrivateRoute";
+import Therapist from "./src/screen/Therapist";
+import Appointment from "./src/screen/Appointment";
+import Videocall from "./src/screen/VideoCall";
+import Logout from "./src/screen/Logout";
+import Timetable from "./src/screen/Timetable";
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -21,13 +26,30 @@ export default function App() {
     >
       <Providers>
         <Routes>
+          <Route path="/" element={<Navigate to={"/home"} />} />
           <Route path="/login" element={<Login />} />
           <Route path="/registro" element={<Register />} />
-          <Route path="/" element={<Navigate to={"/home"} />} />
           <Route path="/home/*" element={<PrivateRoute component={Home} />} />
           <Route
             path="/perfil/*"
             element={<PrivateRoute component={Profile} />}
+          />
+          <Route
+            path="/terapeutas/*"
+            element={<PrivateRoute component={Therapist} />}
+          />
+          <Route
+            path="/appointment/*"
+            element={<PrivateRoute component={Appointment} />}
+          />
+          <Route
+            path="/videollamada/*"
+            element={<PrivateRoute component={Videocall} />}
+          />
+          <Route path="/logout" element={<Logout />} />
+          <Route
+            path="/horario"
+            element={<PrivateRoute component={Timetable} />}
           />
         </Routes>
       </Providers>

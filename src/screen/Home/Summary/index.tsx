@@ -12,7 +12,6 @@ import { useAuth } from "../../../context/Auth";
 
 const Summary: React.FC = () => {
   const { user } = useAuth();
-
   return (
     <>
       <Scrollable>

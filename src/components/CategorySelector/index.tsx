@@ -16,6 +16,7 @@ const CategorySelector: React.FC<{
     const fetchCategory = async () => {
       await getAllCategories();
     };
+    fetchCategory();
   }, []);
 
   useEffect(() => {

@@ -24,6 +24,7 @@ export const getAllAppointments = async (): Promise<BaseAppointment[]> => {
 
 export const getPendingAppointments = async (): Promise<BaseAppointment[]> => {
   const response = await api.get<BaseAppointment[]>("/appointments/pending");
+
   return response.data;
 };
 
@@ -36,8 +37,8 @@ export const reserveAppointment = async (data: {
   therapistId: number;
   dateISO: string;
 }): Promise<Appointment> => {
-  const response = await api.post<Appointment>("/appointments/reserve", data);
-  return response.data;
+  const response = await api.post("/appointments/reserve", data);
+  return response.data.appointment;
 };
 
 export const confirmAppointment = async (data: {

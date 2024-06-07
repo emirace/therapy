@@ -17,7 +17,6 @@ const Client: React.FC<{ user: ClientInterface }> = ({ user }) => {
   const { appointments, getUpcomingAppointments, loadingStates } =
     useAppointment();
   const alert = useAlert();
-
   useEffect(() => {
     const fetchUpcomingAppointment = async () => {
       await getUpcomingAppointments();

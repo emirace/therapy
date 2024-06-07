@@ -58,7 +58,7 @@ const TherapistCard: React.FC<{
           )}
         </ImageContainer>
         <View style={styles.informationContainer}>
-          <BaseText fontSize={18} marginBottom={5}>{`${
+          <BaseText fontSize={18} marginBottom={5} weight={600}>{`${
             title ?? ""
           } ${name} ${lastName}`}</BaseText>
           <RatingStars reviewsCount={reviewsCount} reviewAvg={reviewAvg} />

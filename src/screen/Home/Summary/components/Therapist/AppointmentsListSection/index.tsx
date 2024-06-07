@@ -20,11 +20,12 @@ const styles = StyleSheet.create({
 });
 
 const AppointmentsListSection: React.FC = () => {
-  const { appointments, getAllAppointments, loadingStates } = useAppointment();
+  const { appointments, getPendingAppointments, loadingStates } =
+    useAppointment();
   const socket = useSocket();
 
   const fetchAppointment = async () => {
-    await getAllAppointments();
+    await getPendingAppointments();
   };
   useEffect(() => {
     fetchAppointment();
@@ -39,6 +40,8 @@ const AppointmentsListSection: React.FC = () => {
     });
   }, []);
 
+  console.log(appointments);
+
   return (
     <Container>
       <BaseText fontSize={18} weight={800} marginTop={4} marginBottom={4}>
@@ -46,7 +49,7 @@ const AppointmentsListSection: React.FC = () => {
       </BaseText>
       <View style={styles.container}>
         <ScrollView contentContainerStyle={styles.listContainer}>
-          {loadingStates.getAllAppointments ? (
+          {loadingStates.getPendingAppointments ? (
             <Loading />
           ) : appointments.pendingList.length === 0 ? (
             <BaseText>
