@@ -1,12 +1,13 @@
 import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import React from "react";
 import { PRIMARY_GREEN } from "../../../../../resources/constants/colors";
+import Close from "../../../../../resources/img/Close";
 
 const Info = ({ close }: { close: () => void }) => {
   return (
     <View style={styles.modalContainer}>
       <TouchableOpacity style={styles.closeButton} onPress={close}>
-        <Text style={{ color: "white" }}>X</Text>
+        <Close />
       </TouchableOpacity>
       <Text style={styles.modalTitle}>Sesión de cortesía</Text>
       <Text style={styles.modalText}>
@@ -27,7 +28,6 @@ export default Info;
 
 const styles = StyleSheet.create({
   modalContainer: {
-    width: 300,
     backgroundColor: "white",
     borderRadius: 10,
     padding: 20,
@@ -42,10 +42,9 @@ const styles = StyleSheet.create({
     alignSelf: "flex-end",
     backgroundColor: PRIMARY_GREEN,
     borderRadius: 50,
-    width: 20,
-    height: 20,
     justifyContent: "center",
     alignItems: "center",
+    padding: 8,
   },
   modalTitle: {
     fontSize: 18,
@@ -58,7 +57,7 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   okButton: {
-    backgroundColor: "#b4b43f",
+    backgroundColor: PRIMARY_GREEN,
     padding: 10,
     borderRadius: 5,
     width: "100%",

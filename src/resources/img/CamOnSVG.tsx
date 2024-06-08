@@ -1,7 +1,7 @@
 import * as React from "react";
-import Svg, { G, Path } from "react-native-svg";
-const CamOnSVG = () => (
-  <Svg width={184} height={188}>
+import Svg, { SvgProps, G, Path } from "react-native-svg";
+const CamOnSVG = (props: SvgProps) => (
+  <Svg xmlns="http://www.w3.org/2000/svg" width={184} height={188} {...props}>
     <G data-name="Group 128">
       <Path
         fill="#fff"

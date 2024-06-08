@@ -1,9 +1,5 @@
-import { NavigationContainer } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { StatusBar } from "expo-status-bar";
 import { KeyboardAvoidingView, Platform, StyleSheet } from "react-native";
 import Login from "./src/screen/Login";
-import { RootStackParamList } from "./src/types/notification";
 import Home from "./src/screen/Home";
 import Providers from "./Providers";
 import { Navigate, Route, Routes } from "react-router-native";
@@ -15,8 +11,7 @@ import Appointment from "./src/screen/Appointment";
 import Videocall from "./src/screen/VideoCall";
 import Logout from "./src/screen/Logout";
 import Timetable from "./src/screen/Timetable";
-
-const Stack = createNativeStackNavigator<RootStackParamList>();
+import Payments from "./src/screen/Payments";
 
 export default function App() {
   return (
@@ -37,6 +32,10 @@ export default function App() {
           <Route
             path="/terapeutas/*"
             element={<PrivateRoute component={Therapist} />}
+          />
+          <Route
+            path="/pagos"
+            element={<PrivateRoute component={Payments} />}
           />
           <Route
             path="/appointment/*"

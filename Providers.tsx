@@ -8,6 +8,7 @@ import { RequiredDocumentationProvider } from "./src/context/RequiredDocumentati
 import { TherapistProvider } from "./src/context/Therapist";
 import SocketProvider from "./src/Socket";
 import { NativeRouter, RouterProvider } from "react-router-native";
+import { AccountProvider } from "./src/context/Account";
 
 const Providers: React.FC<PropsWithChildren> = ({ children }) => {
   return (
@@ -18,7 +19,9 @@ const Providers: React.FC<PropsWithChildren> = ({ children }) => {
             <RequiredDocumentationProvider>
               <TherapistProvider>
                 <SocketProvider>
-                  <NativeRouter>{children}</NativeRouter>
+                  <AccountProvider>
+                    <NativeRouter>{children}</NativeRouter>
+                  </AccountProvider>
                 </SocketProvider>
               </TherapistProvider>
             </RequiredDocumentationProvider>

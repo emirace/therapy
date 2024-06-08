@@ -16,6 +16,10 @@ import MicOffSVG from "../../../../../resources/img/MicOffSVG";
 import SoundOffSVG from "../../../../../resources/img/SoundOffSVG";
 import HangupCall from "../../../../../resources/img/icons/HangupCall";
 import SoundOnSVG from "../../../../../resources/img/SoundOnSVG";
+import { FontAwesome } from "@expo/vector-icons";
+import { FontAwesome5 } from "@expo/vector-icons";
+import { CircleActionButton2 } from "./CircleActionButton";
+import { Ionicons } from "@expo/vector-icons";
 
 interface Props {
   appointment: Appointment;
@@ -64,24 +68,42 @@ const VideocallInterface: React.FC<Props> = ({
           />
         )}
         <View style={styles.actionsContainer}>
-          <CircleActionButton
-            src={micEnabled ? MicOnSVG : MicOffSVG}
-            onPress={toggleMic}
+          <CircleActionButton2
+            src={
+              micEnabled ? (
+                <FontAwesome5 name="microphone" size={18} color="white" />
+              ) : (
+                <FontAwesome5 name="microphone-slash" size={18} color="white" />
+              )
+            }
+            onClick={toggleMic}
             alt={"Mutear"}
           />
-          <CircleActionButton
-            src={videoEnabled ? CamOnSVG : CamOffSVG}
-            onPress={toggleVideo}
+          <CircleActionButton2
+            src={
+              videoEnabled ? (
+                <FontAwesome name="video-camera" size={18} color="white" />
+              ) : (
+                <FontAwesome5 name="video-slash" size={18} color="white" />
+              )
+            }
+            onClick={toggleVideo}
             alt={"Apagar video"}
           />
-          <CircleActionButton
-            src={soundEnabled ? SoundOnSVG : SoundOffSVG}
-            onPress={() => setSoundEnabled(!soundEnabled)}
+          <CircleActionButton2
+            src={
+              soundEnabled ? (
+                <FontAwesome name="volume-up" size={18} color="white" />
+              ) : (
+                <Ionicons name="volume-mute-sharp" size={18} color="white" />
+              )
+            }
+            onClick={() => setSoundEnabled(!soundEnabled)}
             alt={"Apagar sonido"}
           />
-          <CircleActionButton
-            src={HangupCall}
-            onPress={endCall}
+          <CircleActionButton2
+            src={<Ionicons name="call" size={18} color="white" />}
+            onClick={endCall}
             alt={"Apagar sonido"}
             style={{ backgroundColor: "red" }}
           />

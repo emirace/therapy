@@ -53,6 +53,7 @@ const Timetable: React.FC = () => {
   const { getServerTime, loadingStates } = useAppointment();
   const { updateTherapist, loadingUpdate } = useTherapist();
   const [serverTime, setServerTime] = useState<{ now: number } | null>(null);
+  const [loadingServerTime, setLoadingServerTime] = useState(true);
 
   const [nextWeekDates, setNextWeekDates] = useState<Date[]>([]);
   const [withError, setWithError] = useState(false);
@@ -61,7 +62,10 @@ const Timetable: React.FC = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      await getServerTime();
+      setLoadingServerTime(true);
+      const res = await getServerTime();
+      if (res) setServerTime(res);
+      setLoadingServerTime(false);
     };
     fetchData();
   }, []);
@@ -162,7 +166,7 @@ const Timetable: React.FC = () => {
         {loadingUpdate && <ActivityIndicator color={GREEN} />}
       </View>
       <Scrollable>
-        {!user || Object.keys(user).length === 0 ? (
+        {!user || Object.keys(user).length === 0 || loadingServerTime ? (
           <Loading />
         ) : (
           <HoursPicker

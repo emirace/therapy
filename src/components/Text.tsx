@@ -72,8 +72,11 @@ export const Title: React.FC<{ children: string; style: TextStyle }> = ({
   return <Text style={[styles.title, style]}>{children}</Text>;
 };
 
-export const Body: React.FC<{ children: string }> = ({ children }) => {
-  return <Text style={styles.body}>{children}</Text>;
+export const Body: React.FC<{ children: any; style?: TextStyle }> = ({
+  children,
+  style,
+}) => {
+  return <Text style={[styles.body, style]}>{children}</Text>;
 };
 
 export const CustomLink: React.FC<{ children: any; to: string }> = ({

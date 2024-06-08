@@ -9,7 +9,7 @@ import { dateFormat } from "../../../../../utils/date";
 import { getDisplayTime } from "../../../../../utils/time";
 import { addMinutes } from "date-fns";
 import Button from "../../../../../components/Button";
-import CircleActionButton from "./CircleActionButton";
+import CircleActionButton, { CircleActionButton2 } from "./CircleActionButton";
 import TopBar from "../../../../../components/TopBar";
 import { MediaStream, RTCView } from "react-native-webrtc";
 import Loading from "../../../../../components/Loading";
@@ -21,6 +21,8 @@ import CamOnSVG from "../../../../../resources/img/CamOnSVG";
 import CamOffSVG from "../../../../../resources/img/CamOffSVG";
 import NoProfileSVG from "../../../../../resources/img/NoProfileSVG";
 import VideoContainer from "../../../containers/VideoContainer";
+import { FontAwesome5 } from "@expo/vector-icons";
+import { FontAwesome } from "@expo/vector-icons";
 
 const Preview: React.FC<{
   appointment: Appointment;
@@ -87,13 +89,25 @@ const Preview: React.FC<{
         )}
 
         <View style={styles.actionButtons}>
-          <CircleActionButton
-            src={micEnabled ? MicOnSVG : MicOffSVG}
+          <CircleActionButton2
+            src={
+              micEnabled ? (
+                <FontAwesome5 name="microphone" size={18} color="white" />
+              ) : (
+                <FontAwesome5 name="microphone-slash" size={18} color="white" />
+              )
+            }
             onClick={toggleMic}
             alt={"Mutear"}
           />
-          <CircleActionButton
-            src={videoEnabled ? CamOnSVG : CamOffSVG}
+          <CircleActionButton2
+            src={
+              videoEnabled ? (
+                <FontAwesome name="video-camera" size={18} color="white" />
+              ) : (
+                <FontAwesome5 name="video-slash" size={18} color="white" />
+              )
+            }
             onClick={toggleVideo}
             alt={"Apagar video"}
           />

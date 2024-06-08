@@ -5,6 +5,7 @@ import {
   StyleProp,
   ViewStyle,
   StyleSheet,
+  View,
 } from "react-native";
 
 interface CircleActionButtonProps {
@@ -26,10 +27,22 @@ const CircleActionButton: React.FC<CircleActionButtonProps> = ({
   );
 };
 
+export const CircleActionButton2: React.FC<CircleActionButtonProps> = ({
+  src,
+  onClick,
+  style,
+}) => {
+  return (
+    <TouchableOpacity onPress={onClick} style={[styles.button, style]}>
+      {src}
+    </TouchableOpacity>
+  );
+};
+
 const styles = StyleSheet.create({
   button: {
-    width: 35,
-    height: 35,
+    width: 40,
+    height: 40,
     borderRadius: 25,
     backgroundColor: "gray",
     justifyContent: "center",
@@ -38,6 +51,8 @@ const styles = StyleSheet.create({
   icon: {
     width: 20,
     height: 20,
+    justifyContent: "center",
+    alignItems: "center",
   },
 });
 

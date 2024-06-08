@@ -2,13 +2,13 @@ import React from "react";
 import { View, StyleSheet } from "react-native";
 import TopBar from "../../../../components/TopBar";
 import { RTCView } from "react-native-webrtc";
-import CircleActionButton from "../Call/components/CircleActionButton";
+import CircleActionButton, {
+  CircleActionButton2,
+} from "../Call/components/CircleActionButton";
 import MainContainer from "../../../../components/containers/MainContainer";
 import useWebRTC from "../../../../hooks/useWebRTC";
-import CamOffSVG from "../../../../resources/img/CamOffSVG";
-import MicOffSVG from "../../../../resources/img/MicOffSVG";
-import CamOnSVG from "../../../../resources/img/CamOnSVG";
-import MicOnSVG from "../../../../resources/img/MicOnSVG";
+import { FontAwesome } from "@expo/vector-icons";
+import { FontAwesome5 } from "@expo/vector-icons";
 
 const TestVideo: React.FC = () => {
   const { localStream, videoEnabled, toggleVideo, micEnabled, toggleMic } =
@@ -27,15 +27,27 @@ const TestVideo: React.FC = () => {
           />
         )}
         <View style={styles.controls}>
-          <CircleActionButton
+          <CircleActionButton2
             onClick={toggleMic}
             style={styles.button}
-            src={micEnabled ? MicOnSVG : MicOffSVG}
+            src={
+              micEnabled ? (
+                <FontAwesome5 name="microphone" size={18} color="white" />
+              ) : (
+                <FontAwesome5 name="microphone-slash" size={18} color="white" />
+              )
+            }
           />
-          <CircleActionButton
+          <CircleActionButton2
             onClick={toggleVideo}
             style={styles.button}
-            src={videoEnabled ? CamOnSVG : CamOffSVG}
+            src={
+              videoEnabled ? (
+                <FontAwesome name="video-camera" size={18} color="white" />
+              ) : (
+                <FontAwesome5 name="video-slash" size={18} color="white" />
+              )
+            }
           />
         </View>
       </View>
