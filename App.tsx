@@ -12,6 +12,8 @@ import Videocall from "./src/screen/VideoCall";
 import Logout from "./src/screen/Logout";
 import Timetable from "./src/screen/Timetable";
 import Payments from "./src/screen/Payments";
+import PasswordRecovery from "./src/screen/PasswordRecovery";
+import RegisterTherapist from "./src/screen/RegisterTherapist";
 
 export default function App() {
   return (
@@ -25,6 +27,8 @@ export default function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/registro" element={<Register />} />
           <Route path="/home/*" element={<PrivateRoute component={Home} />} />
+          <Route path="/recuperar" element={<PasswordRecovery />} />
+          <Route path="/registro-terapeutas" element={<RegisterTherapist />} />
           <Route
             path="/perfil/*"
             element={<PrivateRoute component={Profile} />}

@@ -100,11 +100,11 @@ const Login: React.FC = () => {
           />
           <View style={styles.forgotPasswordContainer}>
             <BaseText>¿Olvidaste tu contraseña?</BaseText>
-            {/* <Link to="/recuperar"> */}
-            <BaseText color={PRIMARY_GREEN} weight={700}>
-              Recupérala
-            </BaseText>
-            {/* </Link> */}
+            <Link to="/recuperar">
+              <BaseText color={PRIMARY_GREEN} weight={700}>
+                Recupérala
+              </BaseText>
+            </Link>
           </View>
           {error && (
             <ErrorText>
